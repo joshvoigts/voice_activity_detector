@@ -1,13 +1,14 @@
 use ort::{GraphOptimizationLevel, Session};
+use std::sync::Arc;
 
 use crate::{error::Error, Sample};
 
 /// A voice activity detector session.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct VoiceActivityDetector {
     chunk_size: usize,
     sample_rate: i64,
-    session: ort::Session,
+    session: Arc<ort::Session>,
     h: ndarray::Array3<f32>,
     c: ndarray::Array3<f32>,
 }
@@ -125,7 +126,7 @@ impl From<VoiceActivityDetectorConfig> for Result<VoiceActivityDetector, Error> 
         });
 
         Ok(VoiceActivityDetector {
-            session,
+            session: session.into(),
             chunk_size: value.chunk_size,
             sample_rate: value.sample_rate,
             h: ndarray::Array3::<f32>::zeros((2, 1, 64)),
