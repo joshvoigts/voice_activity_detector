@@ -1,6 +1,6 @@
 [package]
 name = "voice_activity_detector"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Nick Keenan <nkeenan38@gmail.com>"]
 description = "Voice Activity Detector using the Silero VAD model."
@@ -14,8 +14,8 @@ include = ["src/**/*", "LICENSE", "README.md", "CHANGELOG.md"]
 
 [dependencies]
 futures = "0.3.30"
-ndarray = "0.15.6"
-ort = { version = "=2.0.0-rc.4" }
+ndarray = "0.16"
+ort = { version = "=2.0.0-rc.9" }
 pin-project = "1.1.3"
 thiserror = "1.0.59"
 typed-builder = "0.18.2"
